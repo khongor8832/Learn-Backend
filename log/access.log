@@ -263,3 +263,7 @@
 ::1 - - [01/Mar/2021:15:36:07 +0000] "POST /api/w1/users HTTP/1.1" 500 409 "-" "PostmanRuntime/7.26.10"
 ::1 - - [01/Mar/2021:15:36:15 +0000] "POST /api/w1/users HTTP/1.1" 200 420 "-" "PostmanRuntime/7.26.10"
 ::1 - - [01/Mar/2021:15:39:54 +0000] "POST /api/w1/users HTTP/1.1" 200 420 "-" "PostmanRuntime/7.26.10"
+::1 - - [01/Mar/2021:16:26:33 +0000] "POST /api/w1/users/login HTTP/1.1" 200 422 "-" "PostmanRuntime/7.26.10"
+::1 - - [01/Mar/2021:16:27:32 +0000] "POST /api/w1/users/login HTTP/1.1" 200 435 "-" "PostmanRuntime/7.26.10"
+::1 - - [01/Mar/2021:16:29:05 +0000] "POST /api/w1/users/login HTTP/1.1" 401 133 "-" "PostmanRuntime/7.26.10"
+::1 - - [01/Mar/2021:16:29:10 +0000] "POST /api/w1/users/login HTTP/1.1" 200 435 "-" "PostmanRuntime/7.26.10"
