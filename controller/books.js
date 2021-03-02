@@ -78,6 +78,7 @@ exports.createBook = asyncHandler(async (req, res, next) => {
       404
     );
   }
+  req.body.createUser = req.userId;
   const book = await Book.create(req.body);
   res.status(200).json({
     success: true,
@@ -100,6 +101,7 @@ exports.deleteBook = asyncHandler(async (req, res, next) => {
 });
 
 exports.updateBook = asyncHandler(async (req, res, next) => {
+  req.body.updateUser = req.userId;
   const book = await Book.findByIdAndUpdate(req.params.id, req.body, {
     new: true, // шинээр үүссэн юмыг авы гэж байна.
     runValidators: true, // model дээр бичсэн шалгалтуудыш бас шалгах
