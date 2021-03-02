@@ -4,6 +4,7 @@ const Category = require("../models/Category");
 const MyError = require("../utils/myError");
 const asyncHandler = require("express-async-handler");
 const paginate = require("../utils/paginate");
+const User = require("../models/User");
 
 // api/v1/books
 exports.getBooks = asyncHandler(async (req, res, next) => {
@@ -89,10 +90,12 @@ exports.deleteBook = asyncHandler(async (req, res, next) => {
   if (!book) {
     throw new MyError(req.params.id + "Id-тай ном байхгүй байна. ", 404);
   }
+  const user = await User.findById(req.userId);
   book.remove();
   res.status(200).json({
     success: true,
     data: book,
+    whoDeleted: user.name,
   });
 });
 

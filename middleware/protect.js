@@ -15,7 +15,6 @@ exports.protect = asyncHandler(async (req, res, next) => {
   }
   //Token зөв эсэхийг шалгах
   const tokenObj = jwt.verify(token, process.env.JWT_SECRET);
-  // database -ээс хайж олох
-  req.user = await User.findById(tokenObj.id);
+  req.userId = tokenObj.id;
   next();
 });
