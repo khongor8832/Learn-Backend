@@ -5,10 +5,10 @@ const errorHandler = (err, req, res, next) => {
   ); //error-ын stack гэдэг обеъкт хэвлээд үзий
   const errorCopy = { ...err };
   errorCopy.message = err.message;
-  if (errorCopy.name === "CastError") {
-    errorCopy.message = "энэ ID буруу бүтэцтэй ID байна!";
-    errorCopy.statusCode = 400;
-  }
+  // if (errorCopy.name === "CastError") {
+  //   errorCopy.message = "энэ ID буруу бүтэцтэй ID байна!";
+  //   errorCopy.statusCode = 400;
+  // }
   if (
     errorCopy.name === "JsonWebTokenError" &&
     errorCopy.message === "invalid token"
