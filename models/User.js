@@ -43,9 +43,13 @@ UserSchema.pre("save", async function () {
 
 // JsonWebToken
 UserSchema.methods.getJsonWebToken = function () {
-  const token = jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRESIN,
-  });
+  const token = jwt.sign(
+    { id: this._id, role: this.role },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: process.env.JWT_EXPIRESIN,
+    }
+  );
   return token;
 };
 UserSchema.methods.checkPassword = async function (enteredPassword) {
