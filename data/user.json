@@ -1,0 +1,25 @@
+[
+{
+    "role": "admin",
+    "_id": "603e48fdbe20d1233c99f07d",
+    "name": "misheel",
+    "email": "admin@gmail.com",   
+    "password": "1234" 
+},
+{
+    "role": "user",
+    "_id": "603e4d9697f9363a4c521744",
+    "name": "gana",
+    "email": "user@gmail.com",
+    "password": "1234"
+    
+},
+{
+    "role": "operator",
+    "_id": "603e74629299fe58308c6bc1",
+    "name": "khongor",
+    "email": "op@gmail.com",
+    "password": "1234"
+   
+}
+]
