@@ -471,3 +471,5 @@
 ::1 - - [03/Mar/2021:11:13:17 +0000] "POST /api/w1/users/forget-password HTTP/1.1" 200 66 "-" "PostmanRuntime/7.26.10"
 ::1 - - [03/Mar/2021:11:13:59 +0000] "POST /api/w1/users/forget-password HTTP/1.1" 200 66 "-" "PostmanRuntime/7.26.10"
 ::1 - - [03/Mar/2021:11:14:32 +0000] "POST /api/w1/users/forget-password HTTP/1.1" 200 66 "-" "PostmanRuntime/7.26.10"
+::1 - - [03/Mar/2021:11:28:55 +0000] "POST /api/w1/users/forget-password HTTP/1.1" 200 72 "-" "PostmanRuntime/7.26.10"
+::1 - - [03/Mar/2021:11:29:53 +0000] "POST /api/w1/users/forget-password HTTP/1.1" 200 72 "-" "PostmanRuntime/7.26.10"

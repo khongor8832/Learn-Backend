@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const { nextTick } = require("process");
+const { userInfo } = require("os");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -63,6 +64,13 @@ UserSchema.methods.checkPassword = async function (enteredPassword) {
 UserSchema.methods.generatePasswordChangeToken = function () {
   const resetToken = crypto.randomBytes(20).toString("hex");
 
+  // баазруу энкрийплэгдсэн password хадгалж байна.
+  this.resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+
+  this.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
   return resetToken;
 };
 module.exports = mongoose.model("User", UserSchema);

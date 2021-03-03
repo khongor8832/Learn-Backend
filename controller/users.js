@@ -117,10 +117,13 @@ exports.forgetPassword = asyncHandler(async (req, res, next) => {
   if (!user) {
     throw new MyError(req.body.id + " имэйлтэй  хэрэглэгч олдсонгүй.", 400);
   }
-  user.resetPasswordToken = user.generatePasswordChangeToken();
-  user.save();
+  const resetToken = user.generatePasswordChangeToken();
+  await user.save();
+  //Model шалгалтыг шалгахгүй хүчээр хадгалах бол ингэж хийж өгнө.
+  // await user.save({ validateBeforeSave: false });
+
   res.status(200).json({
     success: true,
-    data: user.resetPasswordToken,
+    resetToken,
   });
 });
