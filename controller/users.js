@@ -4,6 +4,7 @@ const asyncHandler = require("express-async-handler");
 const paginate = require("../utils/paginate");
 // const { use } = require("../routes/users");
 const sendEmail = require("../utils/email");
+const crypto = require("crypto");
 
 // register
 exports.register = asyncHandler(async (req, res, next) => {
@@ -136,5 +137,36 @@ exports.forgetPassword = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     resetToken,
+  });
+});
+
+exports.resetPassword = asyncHandler(async (req, res, next) => {
+  if (!req.body.resetToken || !req.body.password) {
+    throw new MyError("Та токен болон нууц үгээ дамжуулна уу", 400);
+  }
+  const encrypted = crypto
+    .createHash("sha256")
+    .update(req.body.resetToken)
+    .digest("hex");
+
+  const user = await User.findOne({
+    resetPasswordToken: encrypted,
+    resetPasswordExpire: { $gt: Date.now() },
+  });
+  // id хайгаад null байх юм бол шинээр алдаа цацаж байна.
+  if (!user) {
+    throw new MyError("Токен хүчингүй байна.!", 400);
+  }
+
+  user.password = req.body.password;
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpire = undefined;
+  await user.save();
+
+  const token = user.getJsonWebToken();
+  res.status(200).json({
+    success: true,
+    token,
+    user: user,
   });
 });
