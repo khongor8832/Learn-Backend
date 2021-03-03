@@ -2,7 +2,8 @@ const User = require("../models/User");
 const MyError = require("../utils/myError");
 const asyncHandler = require("express-async-handler");
 const paginate = require("../utils/paginate");
-const { use } = require("../routes/users");
+// const { use } = require("../routes/users");
+const sendEmail = require("../utils/email");
 
 // register
 exports.register = asyncHandler(async (req, res, next) => {
@@ -121,6 +122,16 @@ exports.forgetPassword = asyncHandler(async (req, res, next) => {
   await user.save();
   //Model шалгалтыг шалгахгүй хүчээр хадгалах бол ингэж хийж өгнө.
   // await user.save({ validateBeforeSave: false });
+
+  //Имэйл илгээх
+  const link = `https://amazon.mn/changepassword/${resetToken}`;
+  const message = `Сайн байна уу <br><br> Та нууц үгээ солих хүсэлт илгээллээ. <br>Нууц үгээ доорх линк дээр дарж солино уу: <br><br><a target="_blanks" href="${link}">${link}</a><br><br> Өдрийг сайхан өнгөрүүлээрэй. `;
+  const info = await sendEmail({
+    email: user.email,
+    subject: "Нууц үг өөрчлөх хүсэлт",
+    message,
+  });
+  console.log("Message sent: %s", info.messageId);
 
   res.status(200).json({
     success: true,
