@@ -1,5 +1,4 @@
 const logger = (req, res, next) => {
-  req.userId = "12312311212";
   console.log(
     `Logger middleware === Method нь: `.blue.inverse +
       ` ${req.method} `.yellow.inverse +

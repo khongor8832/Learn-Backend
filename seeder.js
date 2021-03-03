@@ -33,7 +33,7 @@ const importData = async () => {
 
     console.log("Өгөгдлийг импортлолоо....".green.inverse);
   } catch (err) {
-    console.log(err);
+    console.log(err.red.inverse);
   }
 };
 

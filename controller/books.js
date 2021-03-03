@@ -13,11 +13,8 @@ exports.getBooks = asyncHandler(async (req, res, next) => {
   const limit = parseInt(req.query.limit) || 5;
   const sort = req.query.sort;
   const select = req.query.select;
-
   ["select", "sort", "page", "limit"].forEach((el) => delete req.query[el]);
-
   const pagination = await paginate(page, limit, Book);
-
   const books = await Book.find(req.query, select)
     .populate({
       path: "category",
@@ -32,6 +29,10 @@ exports.getBooks = asyncHandler(async (req, res, next) => {
     data: books,
     pagination,
   });
+});
+exports.getUserBooks = asyncHandler(async (req, res, next) => {
+  req.query.createUser = req.userId;
+  return this.getBooks(req, res, next);
 });
 // api/w1/categories/:catId/books
 exports.getCategoryBooks = asyncHandler(async (req, res, next) => {

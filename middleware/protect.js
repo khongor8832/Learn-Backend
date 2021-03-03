@@ -16,7 +16,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
   //Token зөв эсэхийг шалгах
   const tokenObj = jwt.verify(token, process.env.JWT_SECRET);
 
-  console.log(tokenObj);
+  // console.log(tokenObj);
   req.userId = tokenObj.id;
   req.userRole = tokenObj.role;
   next();

@@ -9,6 +9,10 @@ const errorHandler = (err, req, res, next) => {
   //   errorCopy.message = "энэ ID буруу бүтэцтэй ID байна!";
   //   errorCopy.statusCode = 400;
   // }
+  if (errorCopy.name === "JsonWebTokenError") {
+    errorCopy.message = "Буруу token байна!";
+    errorCopy.statusCode = 400;
+  }
   if (
     errorCopy.name === "JsonWebTokenError" &&
     errorCopy.message === "invalid token"
