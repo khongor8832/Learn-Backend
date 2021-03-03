@@ -20,7 +20,7 @@ router
 router
   .route("/:id")
   .get(getBook)
-  .delete(protect, authorize("admin"), deleteBook)
+  .delete(protect, authorize("admin", "operator"), deleteBook)
   .put(protect, authorize("admin", "operator"), updateBook);
 router
   .route("/:id/photo")
