@@ -9,16 +9,18 @@ const {
   createUser,
   updateUser,
   deleteUser,
+  forgetPassword,
 } = require("../controller/users");
 const { getUserBooks } = require("../controller/books");
 
 const router = express.Router();
-
+//"/api/w1/users"
 router.route("/register").post(register);
 router.route("/login").post(login);
+router.route("/forget-password").post(forgetPassword);
 //Энэнээс доош бүгдэн дээр protect тавьж өгч байна.
 router.use(protect);
-//"/api/v1/books"
+//"/api/w1/users"
 router
   .route("/")
   .get(authorize("admin"), getUsers)
