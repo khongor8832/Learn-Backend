@@ -24,6 +24,7 @@
     "nodemailer": "^6.5.0",
     "rotating-file-stream": "^2.1.5",
     "sequelize": "^6.5.0",
+    "sequelize-auto": "^0.8.0",
     "transliteration": "^2.2.0"
   },
   "devDependencies": {
