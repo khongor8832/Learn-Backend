@@ -21,8 +21,7 @@ module.exports = function (sequelize, DataTypes) {
       },
     },
     {
-      tablename: "teacher",
-      timestamps: false,
+      tablename: "course",
     }
   );
 };

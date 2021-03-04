@@ -14,10 +14,14 @@ const categorieRouter = require("./routes/categories");
 const booksRouter = require("./routes/books");
 const usersRouter = require("./routes/users");
 const errorHandler = require("./middleware/error");
+const injectDb = require("./middleware/injectDb");
+
+detonv.config({ path: "./config/config.env" });
+//SQL холбогдох
+const db = require("./config/db_mysql");
 
 // оруулж ирсэнээ энд дуудаж ажиллуулж байна.
 const app = express();
-detonv.config({ path: "./config/config.env" });
 connectDB(); //database-тэй холбогдох
 
 var accessLogStream = rfs.createStream("access.log", {
@@ -33,11 +37,19 @@ app.use(express.json()); // req орж ирсэн message болгоны body х
 //middleware
 app.use(fileUpload()); // Зураг оруулж ирэх
 app.use(logger);
+app.use(injectDb(db));
 app.use(morgan("combined", { stream: accessLogStream }));
 app.use("/api/w1/categories", categorieRouter);
 app.use("/api/w1/books", booksRouter);
 app.use("/api/w1/users", usersRouter);
 app.use(errorHandler);
+
+db.sequelize
+  .sync()
+  .then((result) => {
+    console.log("sync хийгдлээ");
+  })
+  .catch((err) => console.log(err + "////////////888888888888888"));
 
 const server = app.listen(
   process.env.PORT,

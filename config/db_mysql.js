@@ -32,5 +32,5 @@ models.forEach((model) => {
   const seqModel = model(sequelize, Sequelize);
   db[seqModel.name] = seqModel;
 });
-
+db.sequelize = sequelize;
 module.exports = db;
