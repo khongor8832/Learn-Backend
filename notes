@@ -19,3 +19,13 @@ Mailtrap
 
 SMTP - имэйл илгээхэд хэрэглэдэг протокол.
 POP3 - имэйл сэрвэрээс уншиж авах хэрэглэдэг протокол.
+--------------------------------------------------------------------------
+MySQL server
+Xampp суулгагахдааа Apache болон SQL server суулгана. 
+
+SQL server-тэй ажиллахдаа дараах дрограмыг суулгана. 
+- MySQL Workbench 
+- MySQL Query Browser 
+- MySQL gui tools 
+
+MySQL gui tools дотор MySQL Query Browser явж байдаг байгаа шүү 
